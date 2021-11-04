@@ -3,7 +3,7 @@ suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
 ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
 values = {'Two':2, 'Three':3, 'Four':4, 'Five':5, 'Six':6, 'Seven':7 ,'Eight':8, 'Nine':9, 'Ten':10
 ,'Jack':10, 'Queen':10, 'King':10, 'Ace':11} #These are the global values of cards
-game_on=  True
+game_on =  True
 class Card:
     """Card(suit,rank)
        here, suit and rank are str type"""
@@ -109,14 +109,17 @@ def hit(deck,hand,add=1):
 def hit_or_stand(deck,hand):
 
     while True:
-        choice = input('Hit or Stand. input H for Hit and S for stand : ')
-        if choice[0].lower() not in ['h','s']:
-            print('Sorry I Did not get that. Try Again! ')
-            continue
+
+        try:
+            choice = input('Hit or Stand. input H for Hit and S for stand : ')
+            choice[0].lower() not in ['h','s']
+        except:
+            print('Sorry I did not get that! Please Try Again')
         else:
             if choice[0].lower() == 'h':
                 hit(deck,hand)
                 return True
+
 
             elif choice[0].lower() == 's':
                 return False
@@ -124,10 +127,13 @@ def hit_or_stand(deck,hand):
 def continue_playing():
 
     while True:
-        choice = input('Continue Playing? , Yes or No : ')
-        if choice[0].lower() not in ['y','n']:
-            print('Sorry I Did not get that. Try Again! ')
-            continue
+
+        try:
+            choice = input('Continue Playing? , Yes or No : ')
+            choice[0].lower() not in ['y','n']
+
+        except:
+            print('Sorry I did not get that! Please Try Again')
         else:
             if choice[0].lower() == 'y':
                 return True
